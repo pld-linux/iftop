@@ -1,0 +1,102 @@
+--- iftop-0.13/configure.in~	Sat Jun 14 14:56:43 2003
++++ iftop-0.13/configure.in	Sat Jun 14 14:56:43 2003
+@@ -57,7 +57,7 @@
+ dnl
+ 
+ dnl Checks for system headers.
+-AC_CHECK_HEADERS(sys/ioctl.h sys/time.h sys/sockio.h unistd.h)
++AC_CHECK_HEADERS(sys/ioctl.h sys/time.h sys/sockio.h unistd.h curses.h ncurses/curses.h)
+ 
+ dnl Checks for typedefs, structures, and compiler characteristics.
+ AC_C_CONST
+@@ -293,29 +294,10 @@
+ dnl AC_SEARCH_LIBS....
+ dnl
+ 
+-AC_MSG_CHECKING([for a curses library containing mvchgat])
+-oldLIBS=$LIBS
+-for curseslib in curses ncurses ; do
+-    LIBS="$oldLIBS -l$curseslib"
+-    AC_TRY_LINK([
+-#include <curses.h>
+-        ], [
+-        mvchgat(0, 0, 1, A_REVERSE, 0, NULL)
+-        ], [
+-        foundcurseslib=$curseslib
+-        break
+-        ])
+-done
+-
+-if test x$foundcurseslib = x ; then
+-    AC_MSG_RESULT([none found])
+-    AC_MSG_ERROR([Curses! Foiled again!
+-  (Can't find a curses library supporting mvchgat.)
+-  Consider installing ncurses.])
+-else
+-    AC_MSG_RESULT([-l$foundcurseslib])
+-fi
+-
++AC_CHECK_LIB(ncurses, mvchgat, [],
++	[AC_CHECK_LIB(ncurses, mvchgat, [],
++		AC_MSG_ERROR([ncurses or curses libraty not found]))]
++)
+ 
+ dnl
+ dnl POSIX threads. Different systems like different combinations of flags,
+--- iftop-0.13/iftop.c~	Sat Jun 14 15:00:19 2003
++++ iftop-0.13/iftop.c	Sat Jun 14 15:00:19 2003
+@@ -21,7 +21,13 @@
+ #include <net/if.h>
+ 
+ #include <pthread.h>
+-#include <curses.h>
++#ifdef HAVE_NCURSES_CURSES_H
++#   include <ncurses/curses.h>
++#else
++#   ifdef HAVE_CURSES_H
++#	include <curses.h>
++#   endif
++#endif
+ #include <signal.h>
+ #include <string.h>
+ #include <unistd.h>
+--- iftop-0.13/edline.c~	Sat Jun 14 15:12:57 2003
++++ iftop-0.13/edline.c	Sat Jun 14 15:12:57 2003
+@@ -6,8 +6,15 @@
+ 
+ static const char rcsid[] = "$Id$";
+ 
++#include <config.h>
+ #include <ctype.h>
+-#include <curses.h>
++#ifdef HAVE_NCURSES_CURSES_H
++#   include <ncurses/curses.h>
++#else
++#   ifdef HAVE_CURSES_H
++#	include <curses.h>
++#   endif
++#endif
+ #include <string.h>
+ 
+ #include "iftop.h"
+--- iftop-0.13/ui.c~	Sat Jun 14 15:27:10 2003
++++ iftop-0.13/ui.c	Sat Jun 14 15:27:10 2003
+@@ -3,10 +3,17 @@
+  *
+  */
+ 
++#include <config.h>
+ #include <sys/types.h>
+ 
+ #include <ctype.h>
+-#include <curses.h>
++#ifdef HAVE_NCURSES_CURSES_H
++#   include <ncurses/curses.h>
++#else
++#   ifdef HAVE_CURSES_H
++#	include <curses.h>
++#   endif
++#endif
+ #include <errno.h>
+ #include <string.h>
+ #include <math.h>
