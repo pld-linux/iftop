@@ -10,10 +10,11 @@ Source0:	http://www.ex-parrot.com/~pdw/iftop/download/%{name}-%{version}.tar.gz
 # Source0-md5: f8f7f55e4d855bf5ea581a4013226f71
 Patch0:		%{name}.curses.patch
 URL:		http://www.ex-parrot.com/~pdw/iftop/download/
-BuildRequires:	pcre-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libpcap-devel
 BuildRequires:  ncurses-devel
-Requires:	libpcap
-Requires:       ncurses
+BuildRequires:	pcre-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -35,9 +36,12 @@ wolne?".
 
 %build
 rm -f missing
+%{__aclocal}
 %{__autoconf}
+%{__automake}
+CPPFLAGS="-I/usr/include/ncurses"
 %configure
-%{__make} CC="%{__cc} %{rpmcflags} -Wall -I/usr/include/ncurses"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
