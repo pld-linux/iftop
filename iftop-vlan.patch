@@ -58,17 +58,3 @@ diff -dur iftop-0.16.orig/iftop.c iftop-0.16/iftop.c
          handle_ip_packet(iptr, dir);
      }
  }
-@@ -420,10 +431,10 @@
- char *set_filter_code(const char *filter) {
-     char *x;
-     if (filter) {
--        x = xmalloc(strlen(filter) + sizeof "() and ip");
--        sprintf(x, "(%s) and ip", filter);
-+        x = xmalloc(strlen(filter) + sizeof "() and (ip or vlan and ip)");
-+        sprintf(x, "(%s) and (ip or vlan and ip)", filter);
-     } else
--        x = xstrdup("ip");
-+        x = xstrdup("ip or vlan and ip");
-     if (pcap_compile(pd, &pcap_filter, x, 1, 0) == -1) {
-         xfree(x);
-         return pcap_geterr(pd);
