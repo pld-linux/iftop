@@ -7,8 +7,8 @@ Epoch:		1
 License:	GPL
 Group:		Applications/Networking
 Source0:	http://www.ex-parrot.com/~pdw/iftop/download/%{name}-%{version}.tar.gz
-Patch0:		%{name}.curses.patch
 # Source0-md5: f8f7f55e4d855bf5ea581a4013226f71
+Patch0:		%{name}.curses.patch
 URL:		http://www.ex-parrot.com/~pdw/iftop/download/
 BuildRequires:	pcre-devel
 BuildRequires:  ncurses-devel
