@@ -31,7 +31,7 @@ przy odpowiedzi na pytanie "dlaczego moje po³±czenie ADSL jest takie
 wolne?".
 
 %prep
-%setup -q 
+%setup -q
 %patch0 -p1
 
 %build
