@@ -4,12 +4,12 @@ Name:		iftop
 Version:	0.13
 Release:	1
 Epoch:		1
-License:	GPL
+License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.ex-parrot.com/~pdw/iftop/download/%{name}-%{version}.tar.gz
 # Source0-md5: f8f7f55e4d855bf5ea581a4013226f71
 Patch0:		%{name}.curses.patch
-URL:		http://www.ex-parrot.com/~pdw/iftop/download/
+URL:		http://www.ex-parrot.com/~pdw/iftop/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libpcap-devel
@@ -37,22 +37,24 @@ wolne?".
 %build
 rm -f missing
 %{__aclocal}
+%{__autoheader}
 %{__autoconf}
 %{__automake}
-CPPFLAGS="-I/usr/include/ncurses"
+CPPFLAGS="-I/usr/include/ncurses"; export CPPFLAGS
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README NEWS TODO
+%doc AUTHORS ChangeLog README NEWS TODO
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man8/*
