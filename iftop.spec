@@ -1,5 +1,5 @@
 Summary:	display bandwidth usage on an interface
-Summary(pl):	wyswietla obciazenie na danym interfejsie.
+Summary(pl):	wy¶wietla obci±¿enie na danym interfejsie.
 Name:		iftop
 Version:	0.13
 Release:	1
@@ -23,10 +23,10 @@ usage by pairs of hosts. Handy for answering the question "why is our ADSL
 link so slow?".
 
 %description -l pl
-Iftop jest tym dla obciazenia sieci, czym top(1) dla obciazenia CPU. Iftop
-slucha na danym intefejsie sieciowym oraz wyswietla tabele z akutalnym
-obciazeniem. Iftop odpowie ci na pytanie "dlaczego moje polaczenie ADSL jest
-takie wolne?".
+Iftop jest tym w zastosowaniach sieciowych, czym top(1) w zastosowaniach
+systemowych. Iftop s³ucha na danym interfejsie sieciowym oraz wy¶wietla
+tabelê z aktualnym obci±¿eniem. Przydatny przy odpowiedzi na pytanie
+"dlaczego moje po³±czenie ADSL jest takie wolne?".
 
 %prep
 %setup -q 
