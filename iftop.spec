@@ -1,13 +1,13 @@
 Summary:	Display bandwidth usage on an interface
 Summary(pl):	Wy¶wietlanie obci±¿enia na danym interfejsie
 Name:		iftop
-Version:	0.14
-Release:	2
+Version:	0.15
+Release:	1
 Epoch:		1
 License:	GPL v2
 Group:		Applications/Networking
 Source0:	http://www.ex-parrot.com/~pdw/iftop/download/%{name}-%{version}.tar.gz
-# Source0-md5:	6f5197ffbd678565902f4f4d4977512b
+# Source0-md5:	87a0a93b023d73429b0bfc5965a66d2e
 Patch0:		%{name}-ncurses.patch
 URL:		http://www.ex-parrot.com/~pdw/iftop/
 BuildRequires:	autoconf
