@@ -40,7 +40,6 @@ rm -f missing
 %{__autoheader}
 %{__autoconf}
 %{__automake}
-CPPFLAGS="-I/usr/include/ncurses"; export CPPFLAGS
 %configure
 %{__make}
 
