@@ -1,5 +1,5 @@
 Summary:	Display bandwidth usage on an interface
-Summary(pl):	Wy¶wietlanie obci±¿enia na danym interfejsie
+Summary(pl.UTF-8):   WyÅ›wietlanie obciÄ…Å¼enia na danym interfejsie
 Name:		iftop
 Version:	0.17
 Release:	1.1
@@ -23,11 +23,11 @@ listens to network traffic on a named interface and displays a table
 of current bandwidth usage by pairs of hosts. Handy for answering the
 question "why is our ADSL link so slow?".
 
-%description -l pl
+%description -l pl.UTF-8
 Iftop jest tym w zastosowaniach sieciowych, czym top(1) w
-zastosowaniach systemowych. Iftop s³ucha na danym interfejsie
-sieciowym oraz wy¶wietla tabelê z aktualnym obci±¿eniem. Przydatny
-przy odpowiedzi na pytanie "dlaczego moje po³±czenie ADSL jest takie
+zastosowaniach systemowych. Iftop sÅ‚ucha na danym interfejsie
+sieciowym oraz wyÅ›wietla tabelÄ™ z aktualnym obciÄ…Å¼eniem. Przydatny
+przy odpowiedzi na pytanie "dlaczego moje poÅ‚Ä…czenie ADSL jest takie
 wolne?".
 
 %prep
