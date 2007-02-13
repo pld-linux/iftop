@@ -1,5 +1,5 @@
 Summary:	Display bandwidth usage on an interface
-Summary(pl.UTF-8):   Wyświetlanie obciążenia na danym interfejsie
+Summary(pl.UTF-8):	Wyświetlanie obciążenia na danym interfejsie
 Name:		iftop
 Version:	0.17
 Release:	1.1
