@@ -5,7 +5,7 @@ Version:	0.17
 Release:	3
 Epoch:		1
 License:	GPL v2
-Group:		Applications/Networking
+Group:		Networking/Utilities
 Source0:	http://www.ex-parrot.com/~pdw/iftop/download/%{name}-%{version}.tar.gz
 # Source0-md5:	062bc8fb3856580319857326e0b8752d
 Patch0:		%{name}-ncurses.patch
