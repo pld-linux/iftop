@@ -39,7 +39,8 @@ rm -f missing
 %{__autoheader}
 %{__autoconf}
 %{__automake}
-%configure
+%configure \
+	LIBS="-ltinfo"
 %{__make}
 
 %install
