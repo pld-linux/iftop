@@ -2,7 +2,7 @@ Summary:	Display bandwidth usage on an interface
 Summary(pl.UTF-8):	Wyświetlanie obciążenia na danym interfejsie
 Name:		iftop
 Version:	0.17
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
