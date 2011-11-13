@@ -1,14 +1,15 @@
+%define	pre	pre2
 Summary:	Display bandwidth usage on an interface
 Summary(pl.UTF-8):	Wyświetlanie obciążenia na danym interfejsie
 Name:		iftop
-Version:	0.17
-Release:	4
+Version:	1.0
+Release:	0.%{pre}.1
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
-Source0:	http://www.ex-parrot.com/~pdw/iftop/download/%{name}-%{version}.tar.gz
-# Source0-md5:	062bc8fb3856580319857326e0b8752d
-Patch0:		%{name}-ncurses.patch
+Source0:	http://www.ex-parrot.com/~pdw/iftop/download/%{name}-%{version}%{pre}.tar.gz
+# Source0-md5:	fef521a49ec0122458d02c64212af3c5
+Patch0:		%{name}-resolver.patch
 URL:		http://www.ex-parrot.com/~pdw/iftop/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -30,8 +31,8 @@ przy odpowiedzi na pytanie "dlaczego moje połączenie ADSL jest takie
 wolne?".
 
 %prep
-%setup -q
-%patch0 -p1
+%setup -q -n %{name}-%{version}%{pre}
+#%patch0 -p1
 
 %build
 rm -f missing
@@ -40,7 +41,8 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 %configure \
-	LIBS="-ltinfo"
+	CPPFLAGS="%{rpmcppflags} -I/usr/include/ncurses" \
+	--with-resolver=getnameinfo
 %{__make}
 
 %install

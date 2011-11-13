@@ -1,0 +1,18 @@
+--- iftop-1.0pre2/configure.in~	2011-11-13 11:21:13.000000000 +0100
++++ iftop-1.0pre2/configure.in	2011-11-13 11:22:16.996495550 +0100
+@@ -172,13 +172,14 @@
+ dnl From this point on, resolver is our preferred resolver given the
+ dnl experiments we've done so far, or "guess" if we have no idea.
+ specified_resolver=$resolver
+-if test x$specified_resolver = xguess ; then
++if test x$specified_resolver = xguess -o test x$specified_resolver = xgetnameinfo; then
+     dnl Best possibility is getnameinfo.
+     use_getnameinfo=0
+     AC_SEARCH_LIBS(getnameinfo, [], [use_getnameinfo=1])
+ 
+     if test $use_getnameinfo = 1 ; then
+         dnl Done.
++        resolver=getnameinfo
+         AC_DEFINE(USE_GETNAMEINFO, 1, [use getnameinfo for name resolution])
+     else
+ 	dnl Best hope is netdb, which presently means gethostbyaddr_r.
