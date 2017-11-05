@@ -1,6 +1,6 @@
-%define	pre	pre2
+%define	pre	pre4
 Summary:	Display bandwidth usage on an interface
-Summary(pl.UTF-8):	Wyświetlanie obciążenia na danym interfejsie
+Summary(pl.UTF-8):	Wyświetlanie ruchu na danym interfejsie
 Name:		iftop
 Version:	1.0
 Release:	0.%{pre}.1
@@ -8,7 +8,7 @@ Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
 Source0:	http://www.ex-parrot.com/~pdw/iftop/download/%{name}-%{version}%{pre}.tar.gz
-# Source0-md5:	fef521a49ec0122458d02c64212af3c5
+# Source0-md5:	7e6decb4958e8a4890cccac335239f24
 Patch0:		%{name}-resolver.patch
 URL:		http://www.ex-parrot.com/~pdw/iftop/
 BuildRequires:	autoconf
@@ -56,6 +56,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README NEWS TODO
-%attr(755,root,root) %{_sbindir}/*
-%{_mandir}/man8/*
+%doc AUTHORS ChangeLog NEWS README TODO
+%attr(755,root,root) %{_sbindir}/%{name}
+%{_mandir}/man8/%{name}.8*
