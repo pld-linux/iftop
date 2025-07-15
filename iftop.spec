@@ -32,7 +32,7 @@ wolne?".
 
 %prep
 %setup -q -n %{name}-%{version}%{pre}
-#%patch0 -p1
+#%%patch0 -p1
 
 %build
 rm -f missing
