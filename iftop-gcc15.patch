@@ -1,0 +1,11 @@
+--- iftop-1.0pre4.orig/cfgfile.h	2014-01-05 19:47:53.000000000 +0100
++++ cfgfile.h	2026-03-09 15:26:43.736435958 +0100
+@@ -13,7 +13,7 @@
+     int value;
+ } config_enumeration_type;
+ 
+-int read_config();
++int read_config(char *file, int whinge_on_error);
+ 
+ char *config_get_string(const char *directive);
+ int config_get_bool(const char *directive);

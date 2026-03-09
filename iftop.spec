@@ -3,13 +3,20 @@ Summary:	Display bandwidth usage on an interface
 Summary(pl.UTF-8):	Wyświetlanie ruchu na danym interfejsie
 Name:		iftop
 Version:	1.0
-Release:	0.%{pre}.1
+Release:	0.%{pre}.2
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
 Source0:	http://www.ex-parrot.com/~pdw/iftop/download/%{name}-%{version}%{pre}.tar.gz
 # Source0-md5:	7e6decb4958e8a4890cccac335239f24
 Patch0:		%{name}-resolver.patch
+Patch1:		%{name}-mac-address-format.patch
+Patch2:		%{name}-cleanup.patch
+Patch3:		%{name}-multi-gigabit.patch
+Patch4:		%{name}-ipv6-dns-resolution.patch
+Patch5:		%{name}-gcc15.patch
+Patch6:		%{name}-iff-running.patch
+Patch7:		%{name}-fno-common.patch
 URL:		http://www.ex-parrot.com/~pdw/iftop/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -32,7 +39,14 @@ wolne?".
 
 %prep
 %setup -q -n %{name}-%{version}%{pre}
-#%%patch0 -p1
+#%%patch 0 -p1
+%patch 1 -p1
+%patch 2 -p1
+%patch 3 -p1
+%patch 4 -p1
+%patch 5 -p1
+%patch 6 -p1
+%patch 7 -p1
 
 %build
 rm -f missing

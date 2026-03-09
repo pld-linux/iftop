@@ -1,0 +1,11 @@
+--- iftop-1.0pre4.orig/iftop.c	2014-01-19 21:21:19.000000000 +0100
++++ iftop.c	2026-03-09 15:26:43.709389780 +0100
+@@ -839,6 +839,8 @@
+     }
+ 
+     pthread_cancel(thread);
++    pthread_join(thread, NULL);
++    pcap_close(pd);
+ 
+     ui_finish();
+     
