@@ -1,0 +1,54 @@
+The 10G and 100G scale entries do not fit in a long on 32-bit targets, so the
+table ends up unsorted there; use long long instead.
+
+rateidx_init advanced one entry past the matching scale because of the
+post-increment in the loop condition, and neither loop was bounded by the
+table size.
+
+--- iftop-1.0pre4.orig/ui.c
++++ iftop-1.0pre4/ui.c
+@@ -71,7 +71,7 @@
+ 
+ /* Barchart scales. */
+ static struct {
+-    long max; int interval;
++    long long max; int interval;
+ } scale[] = {
+         {      64000,     10 },     /* 64 kbit/s */
+         {     128000,     10 },
+@@ -83,6 +83,7 @@
+         {10000000000,    100 },
+        {100000000000,    100 }
+     };
++#define NSCALES ((int)(sizeof scale / sizeof *scale))
+ static int rateidx = 0, wantbiggerrate;
+ 
+ static int rateidx_init = 0;
+@@ -107,14 +108,15 @@
+ }
+ 
+ /* rate in bits */
+-static int get_bar_length(const long rate) {
++static int get_bar_length(const long long rate) {
+     float l;
+     if (rate <= 0)
+         return 0;
+     if (rate > scale[rateidx].max) {
+       wantbiggerrate = 1;
+       if(! rateidx_init) {
+-        while(rate > scale[rateidx_init++].max) {
++        while(rateidx_init < NSCALES - 1 && rate > scale[rateidx_init].max) {
++            rateidx_init++;
+         }
+         rateidx = rateidx_init;
+       }
+@@ -422,7 +424,8 @@
+ 
+     /* Bar chart auto scale */
+     if (wantbiggerrate && options.max_bandwidth == 0) {
+-      ++rateidx;
++      if (rateidx < NSCALES - 1)
++        ++rateidx;
+       wantbiggerrate = 0;
+     }
+ }

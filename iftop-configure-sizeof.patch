@@ -1,0 +1,20 @@
+The u_int<n>_t size probe never compiled: sizeof($1) expands to the configure
+script's first positional parameter (empty), and exit() is called without
+<stdlib.h>, which is a hard error since C23.  Every size therefore came out as
+"unknown type" and integers.h fell back to re-typedef'ing the C99 types.
+
+--- iftop-1.0pre4.orig/configure.ac
++++ iftop-1.0pre4/configure.ac
+@@ -111,9 +111,9 @@
+ int main() {
+     $type dummy;
+     FILE *f=fopen("conftestval", "w");
+-    if (!f) exit(1);
+-    fprintf(f, "%d\n", sizeof($1));
+-    exit(0);
++    if (!f) return 1;
++    fprintf(f, "%d\n", (int)sizeof($type));
++    return 0;
+ }
+     ])], [
+         x=`cat conftestval`
