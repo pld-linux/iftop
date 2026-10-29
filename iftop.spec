@@ -7,13 +7,13 @@ Release:	0.%{pre}.3
 Epoch:		1
 License:	GPL v2
 Group:		Networking/Utilities
-Source0:	http://www.ex-parrot.com/~pdw/iftop/download/%{name}-%{version}%{pre}.tar.gz
+Source0:	https://pdw.ex-parrot.com/iftop/download/%{name}-%{version}%{pre}.tar.gz
 # Source0-md5:	7e6decb4958e8a4890cccac335239f24
 Patch0:		%{name}-git.patch
 Patch1:		%{name}-fno-common.patch
 Patch2:		%{name}-configure-sizeof.patch
 Patch3:		%{name}-bar-scale.patch
-URL:		http://www.ex-parrot.com/~pdw/iftop/
+URL:		https://pdw.ex-parrot.com/iftop/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libpcap-devel
